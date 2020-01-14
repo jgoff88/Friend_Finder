@@ -1,6 +1,6 @@
 
 
-var tableData = require("../data/friends");
+var friendsData = require("../data/friends");
 
 
 
@@ -8,12 +8,12 @@ var tableData = require("../data/friends");
 
 module.exports = function(app) {
 
-  app.get("/api/tables", function(req, res) {
-    res.json(tableData);
+  app.get("/api", function(req, res) {
+    res.json(friendsData);
   });
 
 
-  app.post("/api/tables", function(req, res) {
+  app.post("/api/friends", function(req, res) {
     if (tableData.length < 5) {
       tableData.push(req.body);
       res.json(true);
@@ -26,8 +26,7 @@ module.exports = function(app) {
 
 
   app.post("/api/clear", function(req, res) {
-    tableData.length = 0;
-    waitListData.length = 0;
+    friendsData.length = 0;
 
     res.json({ ok: true });
   });
